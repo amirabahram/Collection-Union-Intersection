@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QtSql/QtSql>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -33,6 +33,7 @@ signals:
     void BUnionsSig(QVector<int> &ins);
 private:
     Ui::MainWindow *ui;
+    QSqlDatabase db;
 
 };
 #endif // MAINWINDOW_H

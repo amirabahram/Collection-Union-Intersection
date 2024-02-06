@@ -3,6 +3,7 @@
 #include "controller.h"
 #include "controllerconcurrent.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -27,6 +28,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->BGroupBox,&QGroupBox::toggled,this,&MainWindow::onBGroupBoxToggled);
     connect(ptr,&Controller::writeBarReady,this,&MainWindow::writeProgressBar);
     connect(ptrConcurrent,&ControllerConcurrent::writeBarReady,this,&MainWindow::writeProgressBarConcurent);
+    db = QSqlDatabase::addDatabase("QPSQL");
+    db.setHostName("localhost");
+    db.setDatabaseName("Collections");
+    db.setPort(5432);
+    db.setUserName("postgres");
+    db.setPassword("qwe");
 
 
 }
@@ -116,21 +123,56 @@ void MainWindow::onUnionsClicked()
 void MainWindow::writeUi(QList<QString> &stri, QString t)
 {
     ui->output->clear();
-    for(QString& str:stri){
-        ui->output->addItem(str);
+    if(!db.open()){
+        qDebug()<<"Error: "<<db.lastError();
     }
+    QSqlDatabase::database().transaction();
+    QSqlQuery query(db);
+    for(QString& str:stri){
+        query.clear();
+        ui->output->addItem(str);
+        query.prepare("INSERT INTO public.\"DataFromQt\" VALUES (:title,:value)");
+         query.bindValue(":title","SingleThread");
+         query.bindValue(":value",str);
+        if(!query.exec()){
+            qDebug()<<"Error: "<<query.lastError();
+        }
+        else{
+            qDebug()<<"Data Inserted Successfully";
+        }
+    }
+    QSqlDatabase::database().commit();
+    db.close();
     ui->ElapseTimeShow->clear();
     ui->ElapseTimeShow->addItem(stri.last());
     ui->Title->setText(t);
+
 
 }
 
 void MainWindow::writeUiConcurrent(QList<QString> &stri, QString t)
 {
     ui->output2->clear();
+    if(!db.open()){
+        qDebug()<<"Error: "<<db.lastError();
+    }
+    QSqlDatabase::database().transaction();
+    QSqlQuery query(db);
     for(QString& str:stri){
         ui->output2->addItem(str);
+        query.clear();
+        query.prepare("INSERT INTO public.\"DataFromQt\" VALUES (:title,:value)");
+        query.bindValue(":title","MultiThreadIntersection");
+        query.bindValue(":value",str);
+        if(!query.exec()){
+            qDebug()<<"Error: "<<query.lastError();
+        }
+        else{
+            qDebug()<<"Data Inserted Successfully";
+        }
     }
+    QSqlDatabase::database().commit();
+    db.close();
     ui->ElapseTimeShow2->clear();
     ui->ElapseTimeShow2->addItem(stri.last());
     ui->Title2->setText(t);
@@ -140,10 +182,27 @@ void MainWindow::writeUiConcurrentUnions(QList<int> &num, QString t)
 {
     QString str;
     ui->output2->clear();
+    if(!db.open()){
+        qDebug()<<"Error: "<<db.lastError();
+    }
+    QSqlDatabase::database().transaction();
+    QSqlQuery query(db);
     for(int &number:num){
         str = QString::number(number);
         ui->output2->addItem(str);
+        query.clear();
+        query.prepare("INSERT INTO public.\"DataFromQt\" VALUES (:title,:value)");
+        query.bindValue(":title","MutiThreadUnion");
+        query.bindValue(":value",str);
+        if(!query.exec()){
+            qDebug()<<"Error: "<<query.lastError();
+        }
+        else{
+            qDebug()<<"Data Inserted Successfully";
+        }
     }
+    QSqlDatabase::database().commit();
+    db.close();
     ui->ElapseTimeShow2->clear();
     ui->ElapseTimeShow2->addItem(str);
     ui->Title2->setText(t);
