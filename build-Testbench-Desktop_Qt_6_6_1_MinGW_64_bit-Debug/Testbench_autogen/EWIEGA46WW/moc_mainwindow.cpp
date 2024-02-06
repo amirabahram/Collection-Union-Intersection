@@ -53,15 +53,17 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "QList<QString>&",
     "str",
     "t",
+    "writeUiConcurrent",
     "onAGroupBoxToggled",
     "checked",
     "onBGroupBoxToggled",
     "writeProgressBar",
-    "value"
+    "value",
+    "writeProgressBarConcurent"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[38];
+    uint offsetsAndSizes[42];
     char stringdata0[11];
     char stringdata1[17];
     char stringdata2[1];
@@ -76,11 +78,13 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata11[16];
     char stringdata12[4];
     char stringdata13[2];
-    char stringdata14[19];
-    char stringdata15[8];
-    char stringdata16[19];
-    char stringdata17[17];
-    char stringdata18[6];
+    char stringdata14[18];
+    char stringdata15[19];
+    char stringdata16[8];
+    char stringdata17[19];
+    char stringdata18[17];
+    char stringdata19[6];
+    char stringdata20[26];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -100,11 +104,13 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(130, 15),  // "QList<QString>&"
         QT_MOC_LITERAL(146, 3),  // "str"
         QT_MOC_LITERAL(150, 1),  // "t"
-        QT_MOC_LITERAL(152, 18),  // "onAGroupBoxToggled"
-        QT_MOC_LITERAL(171, 7),  // "checked"
-        QT_MOC_LITERAL(179, 18),  // "onBGroupBoxToggled"
-        QT_MOC_LITERAL(198, 16),  // "writeProgressBar"
-        QT_MOC_LITERAL(215, 5)   // "value"
+        QT_MOC_LITERAL(152, 17),  // "writeUiConcurrent"
+        QT_MOC_LITERAL(170, 18),  // "onAGroupBoxToggled"
+        QT_MOC_LITERAL(189, 7),  // "checked"
+        QT_MOC_LITERAL(197, 18),  // "onBGroupBoxToggled"
+        QT_MOC_LITERAL(216, 16),  // "writeProgressBar"
+        QT_MOC_LITERAL(233, 5),  // "value"
+        QT_MOC_LITERAL(239, 25)   // "writeProgressBarConcurent"
     },
     "MainWindow",
     "AIntersectionSig",
@@ -120,11 +126,13 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "QList<QString>&",
     "str",
     "t",
+    "writeUiConcurrent",
     "onAGroupBoxToggled",
     "checked",
     "onBGroupBoxToggled",
     "writeProgressBar",
-    "value"
+    "value",
+    "writeProgressBarConcurent"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -136,7 +144,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -144,18 +152,20 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   74,    2, 0x06,    1 /* Public */,
-       5,    1,   77,    2, 0x06,    3 /* Public */,
-       6,    1,   80,    2, 0x06,    5 /* Public */,
-       7,    1,   83,    2, 0x06,    7 /* Public */,
+       1,    1,   86,    2, 0x06,    1 /* Public */,
+       5,    1,   89,    2, 0x06,    3 /* Public */,
+       6,    1,   92,    2, 0x06,    5 /* Public */,
+       7,    1,   95,    2, 0x06,    7 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       8,    0,   86,    2, 0x0a,    9 /* Public */,
-       9,    0,   87,    2, 0x0a,   10 /* Public */,
-      10,    2,   88,    2, 0x0a,   11 /* Public */,
-      14,    1,   93,    2, 0x0a,   14 /* Public */,
-      16,    1,   96,    2, 0x0a,   16 /* Public */,
-      17,    1,   99,    2, 0x0a,   18 /* Public */,
+       8,    0,   98,    2, 0x0a,    9 /* Public */,
+       9,    0,   99,    2, 0x0a,   10 /* Public */,
+      10,    2,  100,    2, 0x0a,   11 /* Public */,
+      14,    2,  105,    2, 0x0a,   14 /* Public */,
+      15,    1,  110,    2, 0x0a,   17 /* Public */,
+      17,    1,  113,    2, 0x0a,   19 /* Public */,
+      18,    1,  116,    2, 0x0a,   21 /* Public */,
+      20,    1,  119,    2, 0x0a,   23 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -167,9 +177,11 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 11, QMetaType::QString,   12,   13,
-    QMetaType::Void, QMetaType::Bool,   15,
-    QMetaType::Void, QMetaType::Bool,   15,
-    QMetaType::Void, QMetaType::Int,   18,
+    QMetaType::Void, 0x80000000 | 11, QMetaType::QString,   12,   13,
+    QMetaType::Void, QMetaType::Bool,   16,
+    QMetaType::Void, QMetaType::Bool,   16,
+    QMetaType::Void, QMetaType::Int,   19,
+    QMetaType::Void, QMetaType::Int,   19,
 
        0        // eod
 };
@@ -203,6 +215,10 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QList<QString> &, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'writeUiConcurrent'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QList<QString> &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'onAGroupBoxToggled'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
@@ -210,6 +226,9 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         // method 'writeProgressBar'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'writeProgressBarConcurent'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
@@ -229,9 +248,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->onInterSectionClicked(); break;
         case 5: _t->onUnionsClicked(); break;
         case 6: _t->writeUi((*reinterpret_cast< std::add_pointer_t<QList<QString>&>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 7: _t->onAGroupBoxToggled((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 8: _t->onBGroupBoxToggled((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 9: _t->writeProgressBar((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 7: _t->writeUiConcurrent((*reinterpret_cast< std::add_pointer_t<QList<QString>&>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 8: _t->onAGroupBoxToggled((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 9: _t->onBGroupBoxToggled((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 10: _t->writeProgressBar((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 11: _t->writeProgressBarConcurent((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -286,13 +307,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 12)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 10;
+        _id -= 12;
     }
     return _id;
 }

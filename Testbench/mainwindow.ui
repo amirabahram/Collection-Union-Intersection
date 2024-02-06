@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>730</width>
+    <width>1012</width>
     <height>685</height>
    </rect>
   </property>
@@ -310,7 +310,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>ElapsedTime:</string>
+     <string>SingleThread:</string>
     </property>
    </widget>
    <widget class="QListWidget" name="ElapseTimeShow">
@@ -339,13 +339,88 @@
      <number>0</number>
     </property>
    </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>10</y>
+      <width>51</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Result</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Title2">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>30</y>
+      <width>101</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Intersection:</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="output2">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>60</y>
+      <width>256</width>
+      <height>361</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>430</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>MultipleThread:</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="ElapseTimeShow2">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>430</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar2">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>470</y>
+      <width>241</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>730</width>
+     <width>1012</width>
      <height>29</height>
     </rect>
    </property>

@@ -9,12 +9,15 @@ Controller::Controller(QObject *parent)
     _thread.start();
 }
 
+
+
+
+////////////////////////////////////
 void Controller::Intersection(QVector<int> &inputs)
 {
     QElapsedTimer timer;
     timer.start();
-    qInfo() << "EntersectionStarted:" << timer.elapsed() / 1000.0 << "seconds";
-    qDebug()<<QThread::currentThread();
+    qDebug()<<"SingleThreadId: "<<QThread::currentThread();
     emit writeBarReady(0);
     QList<int> A;
     QList<int> B;
@@ -48,10 +51,9 @@ void Controller::Intersection(QVector<int> &inputs)
             QList<int> newIntersection;
             for (const int &itemIntersection : intersection) {
                 if (C.contains(itemIntersection)) {
-                    newIntersection.append(itemIntersection);  
+                    newIntersection.append(itemIntersection);
                 }
                 i++;
-                qDebug()<<"sizeof: "<<sizeof(intersection)<<"i: "<<i<<"exp:"<<(i*70/sizeof(intersection));
                 emit writeBarReady((int)((i*70/intersection.size())+50));
             }
             QList<QString> strIntersec;
@@ -168,16 +170,20 @@ void Controller::UnionsLimited(QVector<int> &inputs)
     std::sort(sortedG.begin(),sortedG.end());
     QList<QString> unions;
     QString str;
+    QVector<int> sortedAll(12);
     for(int i=0;i<=3;i++){
-        str = QString::number(sortedE[i]);
-        unions.append(str);
+        sortedAll[i] = sortedE[i];
+    }
+
+    for(int i=0;i<=3;i++){
+      sortedAll[i+4] = sortedF[i];
     }
     for(int i=0;i<=3;i++){
-        str = QString::number(sortedF[i]);
-        unions.append(str);
+        sortedAll[i+8] = sortedG[i];
     }
-    for(int i=0;i<=3;i++){
-        str = QString::number(sortedG[i]);
+    std::sort(sortedAll.begin(),sortedAll.end());
+    for(int i=0;i<12;i++){
+        str = QString::number(sortedAll[i]);
         unions.append(str);
     }
     unions.removeDuplicates();

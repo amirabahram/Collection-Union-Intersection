@@ -257,6 +257,12 @@
 			null
 		],
 		[
+			"E:/Code/Qt/Collections_Faramoj/Testbench/controllerconcurrent.h",
+			"MU",
+			"EWIEGA46WW/moc_controllerconcurrent.cpp",
+			null
+		],
+		[
 			"E:/Code/Qt/Collections_Faramoj/Testbench/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -334,6 +340,11 @@
 	"SOURCES" : 
 	[
 		[ "E:/Code/Qt/Collections_Faramoj/Testbench/controller.cpp", "MU", null ],
+		[
+			"E:/Code/Qt/Collections_Faramoj/Testbench/controllerconcurrent.cpp",
+			"MU",
+			null
+		],
 		[ "E:/Code/Qt/Collections_Faramoj/Testbench/main.cpp", "MU", null ],
 		[ "E:/Code/Qt/Collections_Faramoj/Testbench/mainwindow.cpp", "MU", null ]
 	],

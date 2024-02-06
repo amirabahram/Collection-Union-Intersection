@@ -79,6 +79,12 @@ public:
     QLabel *label_11;
     QListWidget *ElapseTimeShow;
     QProgressBar *progressBar;
+    QLabel *label_12;
+    QLabel *Title2;
+    QListWidget *output2;
+    QLabel *label_13;
+    QListWidget *ElapseTimeShow2;
+    QProgressBar *progressBar2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -86,7 +92,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(730, 685);
+        MainWindow->resize(1012, 685);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         label_4 = new QLabel(centralwidget);
@@ -311,10 +317,30 @@ public:
         progressBar->setGeometry(QRect(440, 470, 241, 26));
         progressBar->setMaximum(100);
         progressBar->setValue(0);
+        label_12 = new QLabel(centralwidget);
+        label_12->setObjectName("label_12");
+        label_12->setGeometry(QRect(710, 10, 51, 24));
+        Title2 = new QLabel(centralwidget);
+        Title2->setObjectName("Title2");
+        Title2->setGeometry(QRect(710, 30, 101, 24));
+        output2 = new QListWidget(centralwidget);
+        output2->setObjectName("output2");
+        output2->setGeometry(QRect(710, 60, 256, 361));
+        label_13 = new QLabel(centralwidget);
+        label_13->setObjectName("label_13");
+        label_13->setGeometry(QRect(690, 430, 121, 21));
+        ElapseTimeShow2 = new QListWidget(centralwidget);
+        ElapseTimeShow2->setObjectName("ElapseTimeShow2");
+        ElapseTimeShow2->setGeometry(QRect(820, 430, 141, 31));
+        progressBar2 = new QProgressBar(centralwidget);
+        progressBar2->setObjectName("progressBar2");
+        progressBar2->setGeometry(QRect(720, 470, 241, 26));
+        progressBar2->setMaximum(100);
+        progressBar2->setValue(0);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 730, 29));
+        menubar->setGeometry(QRect(0, 0, 1012, 29));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -349,7 +375,10 @@ public:
         label_6->setText(QCoreApplication::translate("MainWindow", "E", nullptr));
         intersection->setText(QCoreApplication::translate("MainWindow", "intersection", nullptr));
         unions->setText(QCoreApplication::translate("MainWindow", "union", nullptr));
-        label_11->setText(QCoreApplication::translate("MainWindow", "ElapsedTime:", nullptr));
+        label_11->setText(QCoreApplication::translate("MainWindow", "SingleThread:", nullptr));
+        label_12->setText(QCoreApplication::translate("MainWindow", "Result", nullptr));
+        Title2->setText(QCoreApplication::translate("MainWindow", "Intersection:", nullptr));
+        label_13->setText(QCoreApplication::translate("MainWindow", "MultipleThread:", nullptr));
     } // retranslateUi
 
 };

@@ -20,9 +20,11 @@ public slots:
     void onInterSectionClicked();
     void onUnionsClicked();
     void writeUi(QList<QString> &str, QString t);
+    void writeUiConcurrent(QList<QString> &str, QString t);
     void onAGroupBoxToggled(bool checked);
     void onBGroupBoxToggled(bool checked);
     void writeProgressBar(int value);
+    void writeProgressBarConcurent(int value);
 signals:
     void AIntersectionSig(QVector<int> &ins);
     void AUnionsSig(QVector<int> &ins);

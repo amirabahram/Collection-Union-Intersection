@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "controller.h"
+#include "controllerconcurrent.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,19 +9,22 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     Controller* ptr = new Controller();
+    ControllerConcurrent* ptrConcurrent = new ControllerConcurrent();
     qRegisterMetaType<QList<int>>("QList<int>&");
     qRegisterMetaType<QList<QString>>("QList<QString>&");
     connect(ui->intersection,&QPushButton::clicked,this,&MainWindow::onInterSectionClicked);//could be 1 for Unions and Intersection???
     connect(ui->unions,&QPushButton::clicked,this,&MainWindow::onUnionsClicked);
     connect(this,&MainWindow::AIntersectionSig,ptr,&Controller::Intersection);
+    connect(this,&MainWindow::AIntersectionSig,ptrConcurrent,&ControllerConcurrent::IntersectionConcurrent);
     connect(this,&MainWindow::AUnionsSig,ptr,&Controller::Unions,Qt::QueuedConnection);
     connect(this,&MainWindow::BIntersectionSig,ptr,&Controller::IntersectionLimited,Qt::QueuedConnection);
     connect(this,&MainWindow::BUnionsSig,ptr,&Controller::UnionsLimited,Qt::QueuedConnection);
     connect(ptr,&Controller::writeUiReady,this,&MainWindow::writeUi);
+    connect(ptrConcurrent,&ControllerConcurrent::writeUiReady,this,&MainWindow::writeUiConcurrent);
     connect(ui->AGroupBox,&QGroupBox::toggled,this,&MainWindow::onAGroupBoxToggled);
     connect(ui->BGroupBox,&QGroupBox::toggled,this,&MainWindow::onBGroupBoxToggled);
     connect(ptr,&Controller::writeBarReady,this,&MainWindow::writeProgressBar);
-    qDebug()<<QThread::currentThread();
+    connect(ptrConcurrent,&ControllerConcurrent::writeBarReady,this,&MainWindow::writeProgressBarConcurent);
 
 }
 
@@ -33,7 +37,6 @@ void MainWindow::onInterSectionClicked()
 {
     QElapsedTimer timer;
     timer.start();
-    qInfo() << "onEntersectionClicked:" << timer.elapsed() / 1000.0 << "seconds";
     QVector<int> inputs(18);
     inputs[0]=ui->Amin->text().toInt();
     inputs[1]=ui->Amax->text().toInt();
@@ -63,7 +66,6 @@ void MainWindow::onInterSectionClicked()
             ui->output->addItem("you should choose one of them!");
         }
         else{
-                   qInfo() << "onEntersectionClicked:" << timer.elapsed() / 1000.0 << "seconds";
             if(ui->AGroupBox->isChecked())
                 emit AIntersectionSig(inputs);
             if(ui->BGroupBox->isChecked())
@@ -120,6 +122,17 @@ void MainWindow::writeUi(QList<QString> &stri, QString t)
 
 }
 
+void MainWindow::writeUiConcurrent(QList<QString> &stri, QString t)
+{
+    ui->output2->clear();
+    for(QString& str:stri){
+        ui->output2->addItem(str);
+    }
+    ui->ElapseTimeShow2->clear();
+    ui->ElapseTimeShow2->addItem(stri.last());
+    ui->Title2->setText(t);
+}
+
 void MainWindow::onAGroupBoxToggled(bool checked)
 {
     if(checked){
@@ -140,7 +153,11 @@ void MainWindow::onBGroupBoxToggled(bool checked)
 
 void MainWindow::writeProgressBar(int value)
 {
-    qDebug()<<"Bar Start"<<value;
     ui->progressBar->setValue(value);
+}
+
+void MainWindow::writeProgressBarConcurent(int value)
+{
+    ui->progressBar2->setValue(value);
 }
 
