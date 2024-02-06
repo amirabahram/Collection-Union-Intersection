@@ -100,22 +100,33 @@ void ControllerConcurrent::IntersectionConcurrent(QVector<int> &inputs)
 
 QList<int> ControllerConcurrent::PrepareA(const QVector<int> &inputs){
     QList<int> list;
+    int j=0;
     for(int i=inputs[0];i<=inputs[1];i++){
         list.append(i);
+        j++;
+        emit writeBarReady((int)( j*35/(inputs[1]-inputs[0])));
     }
+
     return list;
+
 }
 QList<int> ControllerConcurrent::PrepareB(const QVector<int> &inputs){
     QList<int> list;
+    int j=0;
     for(int i=inputs[2];i<=inputs[3];i++){
         list.append(i);
+        j++;
+        emit writeBarReady((int)( (j*70/(inputs[3]-inputs[2]))+35 ));
     }
     return list;
 }
 QList<int> ControllerConcurrent::PrepareCu(const QVector<int> &inputs){
     QList<int> list;
+    int j=0;
     for(int i=inputs[4];i<=inputs[5];i++){
         list.append(i);
+        j++;
+        emit writeBarReady((int)( (j*100/(inputs[5]-inputs[4]))+70 ));
     }
     return list;
 }

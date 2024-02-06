@@ -79,17 +79,24 @@ void Controller::Unions(QVector<int> &inputs)
     timer.start();
     QList<QString> unions;
     QString str;
+    int j = 0;
     for(int i=inputs[0];i<=inputs[1];i++){
         str = QString::number(i);
         unions.append(str);
+        j++;
+        emit writeBarReady((int)( (j*35/(inputs[1]-inputs[0]))));
     }
     for(int i=inputs[2];i<=inputs[3];i++){
         str = QString::number(i);
         unions.append(str);
+        j++;
+        emit writeBarReady((int)( (j*70/(inputs[3]-inputs[2])) +35));
     }
     for(int i=inputs[4];i<=inputs[5];i++){
         str = QString::number(i);
         unions.append(str);
+        j++;
+        emit writeBarReady((int)( (j*100/(inputs[5]-inputs[4])) +70));
     }
     unions.removeDuplicates();
     qint64 elapsedTime = timer.elapsed();
