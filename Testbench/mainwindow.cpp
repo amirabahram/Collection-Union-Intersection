@@ -16,15 +16,18 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->unions,&QPushButton::clicked,this,&MainWindow::onUnionsClicked);
     connect(this,&MainWindow::AIntersectionSig,ptr,&Controller::Intersection);
     connect(this,&MainWindow::AIntersectionSig,ptrConcurrent,&ControllerConcurrent::IntersectionConcurrent);
+    connect(this,&MainWindow::AUnionsSig,ptrConcurrent,&ControllerConcurrent::UnionsConcurrent);
     connect(this,&MainWindow::AUnionsSig,ptr,&Controller::Unions,Qt::QueuedConnection);
     connect(this,&MainWindow::BIntersectionSig,ptr,&Controller::IntersectionLimited,Qt::QueuedConnection);
     connect(this,&MainWindow::BUnionsSig,ptr,&Controller::UnionsLimited,Qt::QueuedConnection);
     connect(ptr,&Controller::writeUiReady,this,&MainWindow::writeUi);
     connect(ptrConcurrent,&ControllerConcurrent::writeUiReady,this,&MainWindow::writeUiConcurrent);
+    connect(ptrConcurrent,&ControllerConcurrent::writeUiReadyUnion,this,&MainWindow::writeUiConcurrentUnions);
     connect(ui->AGroupBox,&QGroupBox::toggled,this,&MainWindow::onAGroupBoxToggled);
     connect(ui->BGroupBox,&QGroupBox::toggled,this,&MainWindow::onBGroupBoxToggled);
     connect(ptr,&Controller::writeBarReady,this,&MainWindow::writeProgressBar);
     connect(ptrConcurrent,&ControllerConcurrent::writeBarReady,this,&MainWindow::writeProgressBarConcurent);
+
 
 }
 
@@ -130,6 +133,19 @@ void MainWindow::writeUiConcurrent(QList<QString> &stri, QString t)
     }
     ui->ElapseTimeShow2->clear();
     ui->ElapseTimeShow2->addItem(stri.last());
+    ui->Title2->setText(t);
+}
+
+void MainWindow::writeUiConcurrentUnions(QList<int> &num, QString t)
+{
+    QString str;
+    ui->output2->clear();
+    for(int &number:num){
+        str = QString::number(number);
+        ui->output2->addItem(str);
+    }
+    ui->ElapseTimeShow2->clear();
+    ui->ElapseTimeShow2->addItem(str);
     ui->Title2->setText(t);
 }
 

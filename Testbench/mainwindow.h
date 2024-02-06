@@ -21,6 +21,7 @@ public slots:
     void onUnionsClicked();
     void writeUi(QList<QString> &str, QString t);
     void writeUiConcurrent(QList<QString> &str, QString t);
+    void writeUiConcurrentUnions(QList<int> &num,QString t);
     void onAGroupBoxToggled(bool checked);
     void onBGroupBoxToggled(bool checked);
     void writeProgressBar(int value);

@@ -98,6 +98,50 @@ void ControllerConcurrent::IntersectionConcurrent(QVector<int> &inputs)
     // QFuture<QList<int>> future2 = QtConcurrent::run(&Controller::PrepareC,inputs);
 }
 
+QList<int> ControllerConcurrent::PrepareA(const QVector<int> &inputs){
+    QList<int> list;
+    for(int i=inputs[0];i<=inputs[1];i++){
+        list.append(i);
+    }
+    return list;
+}
+QList<int> ControllerConcurrent::PrepareB(const QVector<int> &inputs){
+    QList<int> list;
+    for(int i=inputs[2];i<=inputs[3];i++){
+        list.append(i);
+    }
+    return list;
+}
+QList<int> ControllerConcurrent::PrepareCu(const QVector<int> &inputs){
+    QList<int> list;
+    for(int i=inputs[4];i<=inputs[5];i++){
+        list.append(i);
+    }
+    return list;
+}
+void ControllerConcurrent::UnionsConcurrent(QVector<int> &inputs)
+{
+    QElapsedTimer timer;
+    timer.start();
+    QFuture<QList<int>> future1 = QtConcurrent::run([this,inputs](){
+        return PrepareA(inputs);
+    });
+    QFuture<QList<int>> future2 = QtConcurrent::run([this,inputs](){
+        return PrepareB(inputs);
+    });
+    QFuture<QList<int>> future3 = QtConcurrent::run([this,inputs](){
+        return PrepareCu(inputs);
+    });
+    QList<int> finalList;
+    finalList<<future1.result();
+    finalList<<future2.result();
+    finalList<<future3.result();
+    std::sort(finalList.begin(),finalList.end());
+    finalList.append(timer.elapsed());
+    emit writeUiReadyUnion(finalList,"Unions:");
+
+}
+
 
 
 

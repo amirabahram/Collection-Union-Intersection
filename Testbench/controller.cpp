@@ -187,6 +187,7 @@ void Controller::UnionsLimited(QVector<int> &inputs)
         unions.append(str);
     }
     unions.removeDuplicates();
+
     emit writeUiReady(unions,"Unions:");
 
 }
